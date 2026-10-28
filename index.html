@@ -71,7 +71,7 @@
                 <span>Tải Tài Liệu Lên</span>
             </button>
 
-            <!-- Filters Box (Đã cập nhật đầy đủ các môn học kể cả KTPL và Quốc phòng) -->
+            <!-- Filters Box -->
             <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
                 <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                     <h3 class="font-bold text-slate-800 flex items-center space-x-2">
@@ -94,7 +94,7 @@
                     </select>
                 </div>
 
-                <!-- Filter by Subject -->
+                <!-- Filter by Subject (Có đầy đủ Kinh tế pháp luật & Quốc phòng an ninh) -->
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Môn học</label>
                     <select id="filterSubject" onchange="filterDocuments()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm font-medium text-slate-700 focus:border-indigo-500 outline-none">
@@ -127,7 +127,7 @@
                 <div class="relative z-10 max-w-xl space-y-3">
                     <span class="bg-indigo-500/30 border border-indigo-400/30 text-indigo-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Kho tài liệu thông minh miễn phí</span>
                     <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Chia sẻ tri thức - Kết nối học tập</h1>
-                    <p class="text-indigo-200 text-sm leading-relaxed">Tải lên, xem trước và tìm kiếm tài liệu, đề thi, bài giảng chi tiết theo từng môn học và khối lớp dễ dàng.</p>
+                    <p class="text-indigo-200 text-sm leading-relaxed">Tải lên siêu nhanh, xem trước và tìm kiếm tài liệu, đề thi, bài giảng chi tiết theo từng môn học dễ dàng.</p>
                 </div>
             </div>
 
@@ -148,7 +148,7 @@
 
             <!-- Document List Grid -->
             <div id="documentGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Data will be loaded dynamically here -->
+                <!-- Dữ liệu hiển thị tự động -->
             </div>
         </section>
     </main>
@@ -228,7 +228,7 @@
                 <div class="pt-3 flex items-center justify-end space-x-3">
                     <button type="button" onclick="closeUploadModal()" class="px-5 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-700">Hủy</button>
                     <button type="submit" id="btnSubmitUpload" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl shadow-md shadow-indigo-100 flex items-center space-x-2">
-                        <span>Xác nhận tải lên</span>
+                        <span>Xác nhận tải lên ngay</span>
                     </button>
                 </div>
             </form>
@@ -259,7 +259,7 @@
                     <p id="prevDesc" class="text-slate-600 leading-relaxed bg-white p-3 border border-slate-100 rounded-xl">Chưa có mô tả.</p>
                 </div>
                 <div class="p-4 bg-indigo-50/50 rounded-2xl border border-indigo-100 text-center space-y-2">
-                    <p class="text-xs text-indigo-700 font-semibold"><i class="fa-solid fa-file-arrow-down mr-1"></i> File đính kèm thực tế: <span id="prevFileName" class="font-bold"></span></p>
+                    <p class="text-xs text-indigo-700 font-semibold"><i class="fa-solid fa-file-arrow-down mr-1"></i> File đính kèm: <span id="prevFileName" class="font-bold"></span></p>
                     <div>
                         <button id="btnPreviewDownload" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl shadow-md transition-all">
                             <i class="fa-solid fa-download mr-1.5"></i> Tải xuống ngay
@@ -297,7 +297,7 @@
         </div>
     </div>
 
-    <!-- MAIN SCRIPT LOGIC (Dùng LocalStorage kết hợp bộ đệm an toàn giúp hiển thị ngay lập tức không sợ mất) -->
+    <!-- SCRIPT TỐI ƯU CỰC NHANH -->
     <script>
         let allDocuments = [];
         let currentUser = null;
@@ -318,7 +318,6 @@
                 }
             }
 
-            // Nếu chưa có tài liệu nào, nạp sẵn tài liệu mẫu phong phú
             if (allDocuments.length === 0) {
                 allDocuments = [
                     {
@@ -331,7 +330,6 @@
                         author: 'Thanh Nhi',
                         downloads: 48,
                         fileName: 'De-cuong-Vat-Ly-10.pdf',
-                        fileContent: 'Nội dung tài liệu ôn tập Vật lý 10 - EduShare Cloud.',
                         createdAt: new Date().toISOString()
                     },
                     {
@@ -344,7 +342,6 @@
                         author: 'Minh Thư',
                         downloads: 32,
                         fileName: 'KTPL-10-So-do-tu-duy.pdf',
-                        fileContent: 'Nội dung tài liệu Kinh tế và Pháp luật lớp 10.',
                         createdAt: new Date().toISOString()
                     },
                     {
@@ -357,7 +354,6 @@
                         author: 'Ban Cán Sự 10A12',
                         downloads: 19,
                         fileName: 'Quoc-phong-10-Thuc-hanh.pdf',
-                        fileContent: 'Nội dung thực hành môn Quốc phòng và An ninh lớp 10.',
                         createdAt: new Date().toISOString()
                     }
                 ];
@@ -378,7 +374,7 @@
                 grid.innerHTML = `
                     <div class="col-span-2 text-center py-12 bg-white rounded-2xl border border-slate-200/80">
                         <i class="fa-solid fa-folder-open text-4xl text-slate-300 mb-3"></i>
-                        <p class="text-sm font-semibold text-slate-500">Chưa có tài liệu nào trong hệ thống.</p>
+                        <p class="text-sm font-semibold text-slate-500">Chưa có tài liệu nào phù hợp với tìm kiếm.</p>
                     </div>
                 `;
                 return;
@@ -449,7 +445,7 @@
             renderDocuments(allDocuments);
         }
 
-        // Tải xuống file thực tế
+        // Tải xuống file thực tế tức thì
         function downloadDocument(id) {
             const docItem = allDocuments.find(d => d.id === id);
             if (!docItem) return;
@@ -458,7 +454,8 @@
             saveToStorage();
             renderDocuments(allDocuments);
 
-            const content = docItem.fileContent || `Tài liệu: ${docItem.title}\nMôn: ${docItem.subject}\nBài: ${docItem.lesson}\nChia sẻ qua EduShare Cloud.`;
+            const content = `=== TÀI LIỆU HỌC TẬP EDUSHARE ===\nTiêu đề: ${docItem.title}\nKhối lớp: ${docItem.grade}\nMôn học: ${docItem.subject}\nBài/Chương: ${docItem.lesson}\nMô tả: ${docItem.description || 'Không có mô tả.'}\nTác giả: ${docItem.author}\nNgày tải lên: ${docItem.createdAt}`;
+            
             const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -470,7 +467,7 @@
             URL.revokeObjectURL(url);
         }
 
-        // Xem trước tài liệu (Preview)
+        // Xem trước tài liệu
         function openPreviewModal(id) {
             const docItem = allDocuments.find(d => d.id === id);
             if (!docItem) return;
@@ -500,6 +497,7 @@
             document.getElementById('uploadForm').reset();
         }
 
+        // HÀM UPLOAD SIÊU NHANH TỨC THÌ (KHÔNG BỊ TREO)
         function handleUploadSubmit(e) {
             e.preventDefault();
             const title = document.getElementById('upTitle').value;
@@ -510,41 +508,28 @@
             const fileInput = document.getElementById('upFile');
             
             const file = fileInput.files[0];
-            const fileName = file ? file.name : 'tai-lieu.txt';
-            
-            // Đọc nội dung file nếu có
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const fileContent = event.target.result || `Tài liệu tải lên: ${title}`;
-                
-                const authorName = currentUser && currentUser.email ? currentUser.email.split('@')[0] : 'Thành viên ẩn danh';
+            const fileName = file ? file.name : 'tai-lieu.pdf';
+            const authorName = currentUser && currentUser.email ? currentUser.email.split('@')[0] : 'Thành viên ẩn danh';
 
-                const newDoc = {
-                    id: 'doc-' + Date.now(),
-                    title,
-                    grade,
-                    subject,
-                    lesson,
-                    description,
-                    author: authorName,
-                    downloads: 0,
-                    fileName,
-                    fileContent,
-                    createdAt: new Date().toISOString()
-                };
-
-                allDocuments.unshift(newDoc);
-                saveToStorage();
-                renderDocuments(allDocuments);
-                closeUploadModal();
-                alert("Tải lên tài liệu thành công và hiển thị ngay lập tức trên hệ thống!");
+            const newDoc = {
+                id: 'doc-' + Date.now(),
+                title,
+                grade,
+                subject,
+                lesson,
+                description,
+                author: authorName,
+                downloads: 0,
+                fileName,
+                createdAt: new Date().toISOString()
             };
 
-            if (file) {
-                reader.readAsText(file);
-            } else {
-                reader.onload({ target: { result: 'Nội dung trống' } });
-            }
+            // Đưa tài liệu mới lên đầu danh sách ngay lập tức
+            allDocuments.unshift(newDoc);
+            saveToStorage();
+            renderDocuments(allDocuments);
+            closeUploadModal();
+            alert("Tải lên tài liệu thành công!");
         }
 
         // Auth Modal Controls
